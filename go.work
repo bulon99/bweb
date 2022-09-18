@@ -1,0 +1,12 @@
+go 1.18
+
+use (
+	./blog
+	./goodscenter
+	./mall-gateway
+	./msgo
+	./ordercenter
+)
+
+//go work init ./blog
+//go work use ./msgo

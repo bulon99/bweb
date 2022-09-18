@@ -1,0 +1,10 @@
+[log]
+path="./log"  # 所有的配置的都可放在该文件里
+[template]
+pattern="tpl/*.html"
+[db]
+mysql.username=""
+mysql.password=""
+mysql.url=""
+[pool]
+cap=10
