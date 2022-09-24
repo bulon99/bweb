@@ -4,7 +4,6 @@ import (
 	"context"
 )
 
-//不使用grpc生成的，自己实现
 type GoodsRpcServices struct {
 }
 

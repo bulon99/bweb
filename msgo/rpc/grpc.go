@@ -31,8 +31,8 @@ func NewGrpcServer(address string, ops ...grpc.ServerOption) (*MsGrpcServer, err
 }
 
 func (s *MsGrpcServer) Run() error {
-	for _, f := range s.registers {
-		f(s.server)
+	for _, regis := range s.registers {
+		regis(s.server)
 	}
 	return s.server.Serve(s.listen)
 }
@@ -74,7 +74,7 @@ type MsGrpcClient struct {
 
 func NewGrpcClient(config *MsGrpcClientConfig) (*MsGrpcClient, error) {
 	var ctx = context.Background()
-	var dialOptions = config.dialOptions
+	var dialOptions = config.DialOptions
 
 	if config.Block {
 		//阻塞
@@ -104,12 +104,12 @@ type MsGrpcClientConfig struct {
 	ReadTimeout time.Duration
 	Direct      bool
 	KeepAlive   *keepalive.ClientParameters
-	dialOptions []grpc.DialOption
+	DialOptions []grpc.DialOption
 }
 
 func DefaultGrpcClientConfig() *MsGrpcClientConfig {
 	return &MsGrpcClientConfig{
-		dialOptions: []grpc.DialOption{
+		DialOptions: []grpc.DialOption{
 			grpc.WithTransportCredentials(insecure.NewCredentials()),
 		},
 		DialTimeout: time.Second * 3,
